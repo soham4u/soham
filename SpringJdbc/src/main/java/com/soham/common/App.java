@@ -1,5 +1,6 @@
 package com.soham.common;
 
+import java.security.SecureRandom;
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,6 +20,25 @@ public class App
         Customer customer = new Customer( "soham "+(char)((Math.random()*100)+65),(int)(Math.random()*100));
         customerDAO.insert(customer);
     	
+        
+        //Creating and inserting multiple Customers Randomly
+        System.out.println("Creating RANDOM Users ==>>");
+        SecureRandom random = new SecureRandom();
+        String str = "";
+        for(int i=0; i<10;i++){
+        	str = "";
+        	for(byte b: random.generateSeed(2)){
+        		str = str+Byte.valueOf(b);
+        	}
+        	 
+            customer = new Customer( "soham_"+str,(int)(Math.random()*100));
+            customerDAO.insert(customer);
+            System.out.println("User "+i+" customer="+customer);
+        }
+		
+        
+        
+        
 //        Customer customer1 = customerDAO.findByCustomerId(1);
 //        System.out.println("\nCustimer Id: 1");
 //        System.out.println(customer1);
